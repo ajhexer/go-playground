@@ -4,7 +4,7 @@ type CustomerRepositoryStub struct{
 	customers [] Customer
 }
 
-func (c *CustomerRepositoryStub) FindAll() ([]Customer, error)  {
+func (c CustomerRepositoryStub) FindAll() ([]Customer, error)  {
 	return c.customers, nil
 }
 func NewCustomerRepositoryStub() CustomerRepositoryStub{
