@@ -22,7 +22,7 @@ func (c CustomerRepositoryDb)FindAll() ([]Customer, *errors.AppError){
 	return customers, nil
 }
 
-func (c CustomerRepositoryDb) ById(id int)(*Customer, *errors.AppError){
+func (c CustomerRepositoryDb) ById(id string)(*Customer, *errors.AppError){
 	query := "select customer_id, name, data_of_birth, city, zipcode, status from customers where customer_id=?"
 	var customer Customer
 	err := c.client.Get(&customer, query, id)
