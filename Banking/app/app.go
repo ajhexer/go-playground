@@ -9,7 +9,7 @@ import (
 
 func Start(){
 	serv := gin.Default()
-	ch:=CustomerHandlers{service: service.NewCustomerService(domain.NewCustomerRepositoryStub())}
+	ch:=CustomerHandlers{service: service.NewCustomerService(domain.NewCustomerRepositoryDb())}
 	serv.GET("/customers", ch.getAllCustomers)
 	serv.Run(":8181")
 }
