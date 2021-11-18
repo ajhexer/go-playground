@@ -16,7 +16,7 @@ type Account struct{
 
 type AccountRepository interface{
 	FindById(accountId string)(*Account, *errors.AppError)
-	Save(account Account) *errors.AppError
+	Save(account Account) (*Account,*errors.AppError)
 }
 
 func (a Account) ToDtResponse() *transfer.AccountResponse{
