@@ -1,6 +1,7 @@
 package app
 
 import (
+	"Banking/logger"
 	"Banking/service"
 	"github.com/gin-gonic/gin"
 	"net/http"
@@ -19,6 +20,7 @@ func (ch *CustomerHandlers) getAllCustomers(c *gin.Context)  {
 	c.JSON(200, gin.H{
 		"customers":customers,
 	})
+	logger.Log.Info("Test")
 }
 
 

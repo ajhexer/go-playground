@@ -11,5 +11,6 @@ type Customer struct {
 }
 type CustomerRepository interface{
 	FindAll() ([]Customer, error)
+	ById() (*Customer, error)
 }
 
