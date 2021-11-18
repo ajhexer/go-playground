@@ -7,7 +7,7 @@ import (
 )
 
 type CustomerService interface{
-	GetAllCustomer() ([]domain.Customer, *errors.AppError)
+	GetAllCustomer() ([]transfer.CustomerResponse, *errors.AppError)
 	GetCustomer(id string)(*transfer.CustomerResponse, *errors.AppError)
 }
 
