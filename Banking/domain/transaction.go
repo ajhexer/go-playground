@@ -1,6 +1,9 @@
 package domain
 
-import "Banking/transfer"
+import (
+	"Banking/transfer"
+	"time"
+)
 
 type Transaction struct {
 	TransactionId   string  `db:"transaction_id"`
@@ -12,12 +15,21 @@ type Transaction struct {
 
 
 
-func (t Transaction) ToDto() transfer.TransactionResponse {
-	return transfer.TransactionResponse{
+func (t Transaction) ToDto() *transfer.TransactionResponse {
+	return &transfer.TransactionResponse{
 		TransactionId:   t.TransactionId,
 		AccountId:       t.AccountId,
 		Amount:          t.Amount,
 		TransactionType: t.TransactionType,
 		TransactionDate: t.TransactionDate,
+	}
+}
+
+func NewTransaction(accountId string, transactionType string, amount float64) Transaction{
+	return Transaction{
+		AccountId: accountId,
+		Amount: amount,
+		TransactionType: transactionType,
+		TransactionDate: time.Now().Format("2006-01-02 15:04:05"),
 	}
 }

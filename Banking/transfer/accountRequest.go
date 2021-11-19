@@ -10,6 +10,7 @@ type AccountRequest struct {
 
 func (a AccountRequest) Validation() *errors.AppError{
 	if a.AccountType!="saving" && a.AccountType!="salary"{
-		return errors.
+		return errors.ValidationError("Account should be saving or salary")
 	}
+	return nil
 }

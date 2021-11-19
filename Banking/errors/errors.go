@@ -21,3 +21,10 @@ func NewNotFoundError(message string) *AppError {
 	}
 }
 
+func ValidationError(message string) *AppError{
+	return &AppError{
+		http.StatusBadRequest,
+		message,
+	}
+}
+

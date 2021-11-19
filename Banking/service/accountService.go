@@ -17,11 +17,34 @@ type DefaultAccountService struct{
 
 
 func (d DefaultAccountService) NewTransaction(r transfer.TransactionRequest) (*transfer.TransactionResponse, *errors.AppError) {
-	panic("implement me")
+
+	if r.TransactionType=="Withdrawal"{
+		account, err := d.repo.FindById(r.AccountId)
+		if err!=nil{
+			return nil, err
+		}
+		if !account.CanWithdraw(r.Amount){
+			return nil, errors.ValidationError("Credit is lower than amount")
+		}
+	}
+	transaction := domain.NewTransaction(r.AccountId, r.TransactionType, r.Amount)
+	t, err:=d.repo.SaveTransaction(transaction)
+	if err!=nil{
+		return nil, err
+	}
+	return t.ToDto(), nil
 }
 
 func (d DefaultAccountService) NewAccount(request transfer.AccountRequest) (*transfer.AccountResponse, *errors.AppError) {
-	panic("implement me")
+	if err:=request.Validation(); err!=nil{
+		return nil, err
+	}
+	account := domain.NewAccount(request.CustomerId, request.AccountType, request.Amount)
+	t, err := d.repo.Save(account)
+	if err!=nil{
+		return nil, err
+	}
+	return t.ToDtResponse(), nil
 }
 
 
