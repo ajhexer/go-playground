@@ -11,6 +11,7 @@ func Start(){
 	serv := gin.Default()
 	ch:=CustomerHandlers{service: service.NewCustomerService(domain.NewCustomerRepositoryDb())}
 	serv.GET("/customers", ch.getAllCustomers)
+	serv.GET("/customers/:id")
 	serv.Run(":8181")
 
 }

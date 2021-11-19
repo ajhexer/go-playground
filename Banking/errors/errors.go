@@ -3,21 +3,21 @@ package errors
 import "net/http"
 
 type AppError struct {
-	code 	int
-	message string
+	Code    int
+	Message string
 }
 
 func NewUnexpectedError(message string) *AppError {
 	return &AppError{
-		code: http.StatusInternalServerError,
-		message: message,
+		Code:    http.StatusInternalServerError,
+		Message: message,
 	}
 }
 
 func NewNotFoundError(message string) *AppError {
 	return &AppError{
-		code: http.StatusNotFound,
-		message: message,
+		Code:    http.StatusNotFound,
+		Message: message,
 	}
 }
 
