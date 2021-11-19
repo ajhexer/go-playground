@@ -8,7 +8,7 @@ import (
 )
 
 type AccountRepositoryDb struct {
-	client sqlx.DB
+	client *sqlx.DB
 }
 
 func (a AccountRepositoryDb) FindById(accountId string)  (*Account, *errors.AppError){
@@ -79,6 +79,11 @@ func (a AccountRepositoryDb) SaveTransaction(t Transaction) (*Transaction, *erro
 
 	t.Amount = account.Amount
 	return &t, nil
+}
+
+
+func NewAccountRepositoryDb(client *sqlx.DB) AccountRepositoryDb{
+	return AccountRepositoryDb{client: client}
 }
 
 

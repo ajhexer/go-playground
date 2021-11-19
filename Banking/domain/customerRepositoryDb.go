@@ -4,7 +4,6 @@ import (
 	"Banking/errors"
 	"Banking/logger"
 	"github.com/jmoiron/sqlx"
-	"time"
 )
 
 type CustomerRepositoryDb struct{
@@ -35,15 +34,15 @@ func (c CustomerRepositoryDb) ById(id string)(*Customer, *errors.AppError){
 
 
 
-func NewCustomerRepositoryDb() CustomerRepositoryDb{
-	client, err := sqlx.Open("mysql", "user:password@tcp(localhost:5555)/banking")
-	if err!=nil{
-		logger.Log.Error("Unexpected sql errors")
-		panic(err)
-	}
-	client.SetConnMaxLifetime(time.Minute*4)
-	client.SetMaxIdleConns(15)
-	client.SetMaxOpenConns(15)
+func NewCustomerRepositoryDb(client *sqlx.DB) CustomerRepositoryDb{
+	//client, err := sqlx.Open("mysql", "user:password@tcp(localhost:5555)/banking")
+	//if err!=nil{
+	//	logger.Log.Error("Unexpected sql errors")
+	//	panic(err)
+	//}
+	//client.SetConnMaxLifetime(time.Minute*4)
+	//client.SetMaxIdleConns(15)
+	//client.SetMaxOpenConns(15)
 	return CustomerRepositoryDb{
 		client: client,
 	}
