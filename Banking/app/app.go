@@ -12,6 +12,7 @@ func Start(){
 	ch:=CustomerHandlers{service: service.NewCustomerService(domain.NewCustomerRepositoryDb())}
 	serv.GET("/customers", ch.getAllCustomers)
 	serv.Run(":8181")
+
 }
 
 
