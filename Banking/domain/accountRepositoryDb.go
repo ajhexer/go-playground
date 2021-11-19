@@ -62,12 +62,12 @@ func (a AccountRepositoryDb) SaveTransaction(t Transaction) (*Transaction, *erro
 	err = tx.Commit()
 	if err != nil {
 		tx.Rollback()
-		logger.Log.Error("Error while commiting transaction for bank account: " + err.Error())
+		logger.Log.Error("Error while adding transaction to account: " + err.Error())
 		return nil, errors.NewUnexpectedError("Unexpected database error")
 	}
 	transactionId, err := result.LastInsertId()
 	if err != nil {
-		logger.Log.Error("Error while getting the last transaction id: " + err.Error())
+		logger.Log.Error("Error while getting transaction id: " + err.Error())
 		return nil, errors.NewUnexpectedError("Unexpected database error")
 	}
 

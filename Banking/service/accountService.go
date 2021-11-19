@@ -12,7 +12,7 @@ type AccountService interface{
 }
 
 type DefaultAccountService struct{
-	repo domain.AccountRepositoryDb
+	repo domain.AccountRepository
 }
 
 
@@ -47,7 +47,9 @@ func (d DefaultAccountService) NewAccount(request transfer.AccountRequest) (*tra
 	return t.ToDtResponse(), nil
 }
 
-
+func NewAccountService(repo domain.AccountRepository) DefaultAccountService {
+	return DefaultAccountService{repo}
+}
 
 
 
