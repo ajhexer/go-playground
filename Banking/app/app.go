@@ -21,6 +21,8 @@ func Start(){
 	serv.POST("/customers/:id/accounts/:account_id/transactions", ah.NewTransaction)
 	serv.Run(":8181")
 
+	//Todo: Add auth service and middlewares
+
 }
 
 
