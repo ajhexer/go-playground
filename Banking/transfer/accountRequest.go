@@ -14,3 +14,4 @@ func (a AccountRequest) Validation() *errors.AppError{
 	}
 	return nil
 }
+

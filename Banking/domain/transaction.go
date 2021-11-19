@@ -33,3 +33,4 @@ func NewTransaction(accountId string, transactionType string, amount float64) Tr
 		TransactionDate: time.Now().Format("2006-01-02 15:04:05"),
 	}
 }
+

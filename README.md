@@ -1,2 +1,2 @@
 # go-playground
-Some of my go project and practices
+Some of my go projects and practices

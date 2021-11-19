@@ -31,6 +31,11 @@ func (a AccountHandlers) NewTransaction(c *gin.Context){
 		c.JSON(http.StatusBadRequest, nil)
 		return
 	}
+	if !request.Validate(c.Param("account_id")){
+		c.JSON(http.StatusBadRequest, nil)
+		return
+	}
+
 	transaction, err := a.service.NewTransaction(request)
 	if err!=nil{
 		c.JSON(err.Code, nil)
