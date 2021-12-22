@@ -2,6 +2,7 @@ package service
 
 import (
 	"Intersection/domain"
+	"Intersection/dto"
 )
 
 type RectangleService interface{
@@ -14,17 +15,14 @@ type DefaultRectangleService struct{
 	repo domain.RectangleRepository
 }
 
-func (d DefaultRectangleService) GetAllRectangles() ([]domain.Rectangle, error){
+func (d DefaultRectangleService) GetAllRectangles() ([]dto.RectangleDto, error){
 	return d.repo.GetRectangles()
 }
 
 func (d DefaultRectangleService) AddRectangle(main domain.Rectangle, rectangles []domain.Rectangle) error{
 	for _, r:= range rectangles{
 		if main.CheckIntersection(r){
-			err := d.repo.SaveRectangle(r)
-			if err!=nil{
-				return err
-			}
+			d.repo.SaveRectangle(r)
 		}
 	}
 	return nil
