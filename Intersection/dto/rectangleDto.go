@@ -1,21 +1,40 @@
 package dto
 
 import (
+	"Intersection/DB"
 	"Intersection/domain"
-	"gorm.io/gorm"
+	"time"
 )
 
-type RectangleDto struct{
-	gorm.Model
-	X		int
-	Y		int
-	Width	int
-	Height	int
+
+type RectangleRequestDto struct{
+	Main 		domain.Rectangle 	`json:"main"`
+	Input 		[]domain.Rectangle 	`json:"input"`
 }
 
-func (rd *RectangleDto) ToRectangle() domain.Rectangle{
-	r := domain.Rectangle{rd.X, rd.Y, rd.Width, rd.Height}
-	return r
+type RectangleResponseDto struct{
+	domain.Rectangle
+	Time	time.Time `json:"time"`
+}
+
+
+func ToResponseDto(r DB.RectangleDbModel) RectangleResponseDto{
+	res := RectangleResponseDto{
+		Rectangle: rectangleDbToRectangle(r),
+		Time: r.CreatedAt,
+	}
+	return res
+}
+
+
+
+func rectangleDbToRectangle(r DB.RectangleDbModel) domain.Rectangle{
+	return domain.Rectangle{
+		X: r.X,
+		Y: r.Y,
+		Width: r.Width,
+		Height: r.Height,
+	}
 }
 
 

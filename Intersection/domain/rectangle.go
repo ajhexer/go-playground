@@ -1,12 +1,12 @@
 package domain
 
-import "Intersection/dto"
+
 
 type Rectangle struct {
-	X		int	`json:"x"`
-	Y		int	`json:"y"`
-	Width	int	`json:"width"`
-	Height	int	`json:"height"`
+	X		int			`json:"x"`
+	Y		int			`json:"y"`
+	Width	int			`json:"width"`
+	Height	int			`json:"height"`
 }
 
 func rangeCheck(val int, min int, max int) bool{
@@ -19,15 +19,10 @@ func (first *Rectangle) CheckIntersection(second Rectangle) bool{
 	return xOverlap && yOverlap
 }
 
-func (r *Rectangle) ToDto() dto.RectangleDto{
-	d := dto.RectangleDto{
-		X: r.X,
-		Y: r.Y,
-		Height: r.Height,
-		Width: r.Width,
-	}
-	return d
-}
+
+
+
+
 
 
 

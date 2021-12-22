@@ -1,21 +1,21 @@
 package service
 
 import (
+	"Intersection/DB"
 	"Intersection/domain"
-	"Intersection/dto"
 )
 
 type RectangleService interface{
 	AddRectangle(main domain.Rectangle, rectangles []domain.Rectangle) error
-	GetAllRectangles() ([]domain.Rectangle, error)
+	GetAllRectangles() ([]DB.RectangleDbModel, error)
 }
 
 
 type DefaultRectangleService struct{
-	repo domain.RectangleRepository
+	repo DB.RectangleRepository
 }
 
-func (d DefaultRectangleService) GetAllRectangles() ([]dto.RectangleDto, error){
+func (d DefaultRectangleService) GetAllRectangles() ([]DB.RectangleDbModel, error){
 	return d.repo.GetRectangles()
 }
 
@@ -26,6 +26,9 @@ func (d DefaultRectangleService) AddRectangle(main domain.Rectangle, rectangles 
 		}
 	}
 	return nil
+}
+func NewRectangleService(repo DB.RectangleRepository) RectangleService{
+	return DefaultRectangleService{repo: repo}
 }
 
 
