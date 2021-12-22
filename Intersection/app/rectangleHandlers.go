@@ -1,9 +1,12 @@
-package domain
+package app
 
-import "github.com/gin-gonic/gin"
+import (
+	"Intersection/service"
+	"github.com/gin-gonic/gin"
+)
 
 type RectangleHandlers struct {
-
+	service service.RectangleService
 }
 
 func (a RectangleHandlers) AddRectangle(c *gin.Context)  {
