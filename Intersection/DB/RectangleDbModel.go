@@ -23,13 +23,4 @@ func  RectangleToDbModel(r domain.Rectangle) *RectangleDbModel{
 	return &rb
 }
 
-//func (rd *RectangleDto) ToGetDto() RectangleGetDto{
-//	r := RectangleGetDto{Rectangle: rd.ToRectangle(), Time: rd.CreatedAt}
-//	return r
-//}
-//
-//func (rd *RectangleDto) ToRectangle() domain.Rectangle{
-//	r := domain.Rectangle{rd.X, rd.Y, rd.Width, rd.Height}
-//	return r
-//}
 
